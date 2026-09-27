@@ -10,6 +10,7 @@
     "ios": {
       "icon": "./assets/expo.icon"
     },
+    
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
@@ -28,7 +29,6 @@
       "expo-router",
       [
         "expo-splash-screen",
-        "@react-native-google-signin/google-signin",
         {
           "backgroundColor": "#208AEF",
           "image": "./assets/images/splash-icon.png",

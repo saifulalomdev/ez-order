@@ -22,6 +22,7 @@ export default function RootLayout() {
             <Stack>
               <Stack.Screen name="(tabs)" options={screenOptions} />
               <Stack.Screen name="(auth)/login" options={screenOptions} />
+              <Stack.Screen name="(auth)/register" options={screenOptions} />
             </Stack>
           </SafeAreaView>
         </GestureHandlerRootView>
