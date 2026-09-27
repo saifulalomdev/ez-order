@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      EXPO_PUBLIC_API_URL: ${{ secrets.EXPO_PUBLIC_API_URL }}
 
     steps:
       - name: Checkout repository
@@ -20,11 +22,11 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: |
-          npm install
-          npx expo prebuild
-          cd android
-          chmod +x gradlew
+        run: npm install
+
+      - name: Prebuild
+        run: npx expo prebuild
+        # EXPO_PUBLIC_API_URL is already in job env, inherited here
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -32,9 +34,14 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
+      - name: Fix gradlew permissions
+        run: chmod +x android/gradlew
+
       - name: Decode and save Keystore
         run: |
           echo "$KEYSTORE_BASE64" | base64 --decode > android/app/my-release-key.keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
 
       - name: Build release APK
         working-directory: android

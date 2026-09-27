@@ -1,38 +1,34 @@
 import { loginSchema, type LoginSchemaType } from '@/features/auth/auth-schema';
 import { ContentWrapper } from '@/components/ui/content-wrapper';
 import { ScreenWrapper } from '@/components/ui/screen-wrapper';
-import { useForm, Controller } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { authClient } from '@/features/auth/auth-client';
 import { Password } from '@/components/ui/password';
+import { useFormApi } from '@/hooks/use-form-api';
 import { View, Text, Alert } from 'react-native';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Controller } from 'react-hook-form';
 import { useRouter } from 'expo-router';
 
 export default function Login() {
-  const router = useRouter()
+  const router = useRouter();
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<LoginSchemaType>({
-    resolver: zodResolver(loginSchema),
+  const { control, errors, isLoading, apiError, submit } = useFormApi<LoginSchemaType>({
+    schema: loginSchema,
     defaultValues: {
       email: '',
       password: '',
     },
-  })
-
-  const onSubmit = async (data: LoginSchemaType) => {
-    try {
-      console.log('Valid Form Data:', data)
-      router.replace('/(tabs)')
-    } catch {
-      Alert.alert('Error', 'An unexpected error occurred. Please try again.')
-    }
-  }
+    apiFn: async (data) => await authClient.signIn.email(data),
+    onSuccess: (data) => {
+      console.log('Login successful:', data);
+      router.replace('/(tabs)');
+    },
+    onError: (error) => {
+      Alert.alert('Login Failed', 'Please check your credentials and try again.');
+    },
+  });
 
   return (
     <ScreenWrapper>
@@ -50,7 +46,7 @@ export default function Login() {
               Sign in to continue to EZ Order
             </Text>
 
-            {/* Form Inputs with Field Labels & Error Labels */}
+            {/* Form Inputs */}
             <View className="w-full gap-4 mt-6">
               {/* Email Field */}
               <View className="w-full">
@@ -92,17 +88,20 @@ export default function Login() {
                 />
                 <Label variant="error">{errors.password?.message}</Label>
               </View>
+
+              {/* API Error Message */}
+              {apiError ? <Label variant="error">{apiError}</Label> : null}
             </View>
           </View>
 
           {/* Action Buttons */}
           <View className="flex-col gap-3 mt-4 w-full">
             <Button
-              onPress={handleSubmit(onSubmit)}
-              disabled={isSubmitting}
+              onPress={submit}
+              disabled={isLoading}
               className="w-full"
             >
-              {isSubmitting ? 'Signing in...' : 'Sign In'}
+              {isLoading ? 'Signing in...' : 'Sign In'}
             </Button>
 
             <Button
@@ -116,5 +115,5 @@ export default function Login() {
         </View>
       </ContentWrapper>
     </ScreenWrapper>
-  )
+  );
 }

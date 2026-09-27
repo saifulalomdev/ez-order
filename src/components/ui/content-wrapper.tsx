@@ -12,7 +12,7 @@ export function ContentWrapper({ children, className }: ContentsWrapperProps) {
   return (
     <ScrollView
       className={cn(
-        "flex-col gap-1.5 mt-2.5 p-10",
+        "flex-col gap-1.5 mt-2.5 p-10 pt-4",
         className,
       )}
       contentContainerStyle={{ flexGrow: 1 }}

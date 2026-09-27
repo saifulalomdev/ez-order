@@ -3,9 +3,11 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "dependencies": {
+    "@better-auth/expo": "^1.7.6",
     "@expo/ui": "~57.0.20",
     "@hookform/resolvers": "^5.9.1",
     "@react-native-google-signin/google-signin": "^16.1.5",
+    "better-auth": "^1.7.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cn": "^0.4.0",
