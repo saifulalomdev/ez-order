@@ -1,11 +1,15 @@
 import { ContentWrapper } from '@/components/ui/content-wrapper';
 import { ScreenWrapper } from '@/components/ui/screen-wrapper';
+import { Spinner } from '@/components/ui/spinner';
 import { Button } from '@/components/ui/button';
 import { View, Text } from 'react-native';
+import { useState } from 'react';
 
 export default function Login() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleGoogleSignIn = () => {
-   console.log("Pressed!")
+    setIsLoading(false)
   }
 
   return (
@@ -21,8 +25,11 @@ export default function Login() {
             </Text>
           </View>
 
-          <Button className='w-full' onPress={handleGoogleSignIn}>
-            Continue with Google
+          <Button
+            disabled={isLoading} className='w-full'
+            onPress={handleGoogleSignIn}
+          >
+            {isLoading ? <Spinner color='#ffff' /> : "Continue with Google"}
           </Button>
         </View>
       </ContentWrapper>

@@ -9,7 +9,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from 'cn'
 
 const buttonVariants = cva(
-  'flex-row items-center justify-center rounded-full active:opacity-80 disabled:opacity-50',
+  'flex-row items-center justify-center rounded-full active:opacity-80 disabled:opacity-80',
   {
     variants: {
       variant: {

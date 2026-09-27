@@ -28,6 +28,7 @@
       "expo-router",
       [
         "expo-splash-screen",
+        "@react-native-google-signin/google-signin",
         {
           "backgroundColor": "#208AEF",
           "image": "./assets/images/splash-icon.png",
