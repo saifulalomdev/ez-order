@@ -6,7 +6,7 @@ export default function Layout() {
     const tabOptions = {
         headerShown: false,
     }
-    
+
     return (
         <Tabs tabBar={(props) => <AppTabs {...props} />}>
             <Tabs.Screen

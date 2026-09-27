@@ -3,13 +3,13 @@ import { ScreenWrapper } from '@/components/ui/screen-wrapper'
 import { Text } from 'react-native'
 
 export default function Index() {
-  return (
-    <ScreenWrapper>
-      <ContentWrapper>
-        <Text>
-          Dashboard
-        </Text>
-      </ContentWrapper>
-    </ScreenWrapper>
-  )
+    return (
+        <ScreenWrapper>
+            <ContentWrapper>
+                <Text>
+                    Auth
+                </Text>
+            </ContentWrapper>
+        </ScreenWrapper>
+    )
 }

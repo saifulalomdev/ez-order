@@ -5,9 +5,7 @@ import { PlusIcon } from 'lucide-react-native'
 export default function Products() {
   return (
     <ScreenWrapper>
-
-     
-
+      
     </ScreenWrapper>
   )
 }

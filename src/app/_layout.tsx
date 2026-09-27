@@ -12,9 +12,9 @@ export default function RootLayout() {
       <GestureHandlerRootView className='flex-1'>
         <SafeAreaView edges={["top"]} className="flex-1 bg-surface">
           <Stack>
-            {/* <Stack.Screen name="(auth)" options={{ headerShown: false }} /> */}
+            <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            {/* <Stack.Screen name="index" options={{ headerShown: false }} /> */}
+            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
           </Stack>
         </SafeAreaView>
       </GestureHandlerRootView>
