@@ -5,13 +5,11 @@ import { ScreenWrapper } from '@/components/ui/screen-wrapper'
 
 export default function Login() {
   const handleGoogleSignIn = () => {
-    // Add your Google Sign-In logic here
   }
 
   return (
     <ScreenWrapper>
-      <ContentWrapper>
-        <View className="flex-1 justify-between min-h-[80vh] py-10 px-4">
+      <ContentWrapper className='h-screen'>
           {/* Logo & App Name */}
           <View className="items-center justify-center flex-1 gap-3">
             {/* Minimal App Icon Placeholder */}
@@ -36,7 +34,6 @@ export default function Login() {
               </Text>
             </Pressable>
           </View>
-        </View>
       </ContentWrapper>
     </ScreenWrapper>
   )
