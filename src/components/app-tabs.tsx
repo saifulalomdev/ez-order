@@ -37,7 +37,7 @@ export function AppTabs({ state, navigation }: BottomTabBarProps) {
   const routes = state.routeNames;
 
   return (
-    <View className="absolute bottom-0 left-0 right-0 flex-row items-center justify-between px-5 bg-white">
+    <View className="absolute bottom-0 left-0 right-0 h-18 flex-row items-center justify-between px-5 bg-white">
       {routes.map((routeName, i) => {
         const isFocused = state.index === i;
 
@@ -62,7 +62,7 @@ function Tab({ isFocusd, onPress, routeName }: TabProps) {
     <Pressable
       onPress={onPress}
       className={cn(
-        'w-[60px] h-[60px] items-center justify-center pt-3 pb-4 border-t-2',
+        'w-[60px] h-full items-center justify-center pt-4 pb-4 border-t-2',
         isFocusd ? 'border-foreground' : 'border-transparent'
       )}
     >

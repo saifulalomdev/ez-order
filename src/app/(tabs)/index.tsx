@@ -7,7 +7,7 @@ export default function Index() {
     <ScreenWrapper>
       <ContentWrapper>
         <Text>
-          Dashboard
+          
         </Text>
       </ContentWrapper>
     </ScreenWrapper>
