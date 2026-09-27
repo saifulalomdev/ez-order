@@ -12,9 +12,10 @@ export function ContentWrapper({ children, className }: ContentsWrapperProps) {
   return (
     <ScrollView
       className={cn(
-        "flex-col gap-1.5 mt-2.5 px-5 mb-20",
+        "flex-col gap-1.5 mt-2.5 p-10",
         className,
       )}
+      contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
     >
       {children}
