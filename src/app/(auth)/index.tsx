@@ -5,6 +5,7 @@ import { ScreenWrapper } from '@/components/ui/screen-wrapper';
 import { Spinner } from '@/components/ui/spinner';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
+import { GoogleIcon } from '@/icons/google';
 import { View } from 'react-native';
 import { useState } from 'react';
 
@@ -30,7 +31,7 @@ export default function Login() {
               disabled={isLoading}
               onPress={handleGoogleSignIn}
             >
-              {isLoading ? <Spinner color="#ffffff" /> : t('continueWithGoogle')}
+             <GoogleIcon/> {isLoading ? <Spinner color="#ffffff" /> : t('continueWithGoogle')}
             </Button>
           </View>
         </View>

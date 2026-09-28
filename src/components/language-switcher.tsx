@@ -17,7 +17,7 @@ export function LanguageSwitcher() {
     <View className="flex-row items-center gap-2 justify-between w-full bg-gray-100 p-1.5 rounded-full">
       <Button
         size="sm"
-        variant={isBangla ? 'default' : 'ghost'}
+        variant={isBangla ? 'default' : 'outline'}
         className="flex-1"
         onPress={() => changeLanguage('bn')}
       >
