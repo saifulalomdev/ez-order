@@ -1,10 +1,11 @@
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NativeStackNavigationOptions, Stack } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StatusBar } from "react-native";
-import "../styles/global.css";
 import { AuthProvider } from '@/features/auth/auth-context';
 import { AuthGuard } from '@/features/auth/auth-guard';
+import { StatusBar } from "react-native";
+import "../styles/global.css";
+import '@/lib/i18n';
 
 export default function RootLayout() {
 
@@ -21,6 +22,7 @@ export default function RootLayout() {
           <SafeAreaView edges={["top"]} className="flex-1 bg-surface">
             <Stack>
               <Stack.Screen name="(tabs)" options={screenOptions} />
+              <Stack.Screen name="(auth)" options={screenOptions} />
               <Stack.Screen name="(auth)/login" options={screenOptions} />
               <Stack.Screen name="(auth)/register" options={screenOptions} />
             </Stack>

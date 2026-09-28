@@ -4,17 +4,18 @@ import { ScreenWrapper } from '@/components/ui/screen-wrapper';
 import { authClient } from '@/features/auth/auth-client';
 import { Password } from '@/components/ui/password';
 import { useFormApi } from '@/hooks/use-form-api';
-import { View, Text, Alert } from 'react-native';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Controller } from 'react-hook-form';
+import { View, Text } from 'react-native';
 import { useRouter } from 'expo-router';
+import * as Burnt from 'burnt';
 
 export default function Login() {
   const router = useRouter();
 
-  const { control, errors, isLoading, apiError, submit } = useFormApi<LoginSchemaType>({
+  const { control, errors, isLoading, submit } = useFormApi<LoginSchemaType>({
     schema: loginSchema,
     defaultValues: {
       email: '',
@@ -22,11 +23,20 @@ export default function Login() {
     },
     apiFn: async (data) => await authClient.signIn.email(data),
     onSuccess: (data) => {
+      Burnt.toast({
+        title: 'Login Successfully',
+        preset: 'error',
+        message: "Yo yo!"
+      });
       console.log('Login successful:', data);
-      router.replace('/(tabs)');
+      router.push('/(tabs)');
     },
     onError: (error) => {
-      Alert.alert('Login Failed', 'Please check your credentials and try again.');
+      Burnt.toast({
+        title: 'Login failed',
+        message: typeof error === 'string' ? error : 'Please check your credentials and try again.',
+        preset: 'error',
+      });
     },
   });
 
@@ -88,9 +98,6 @@ export default function Login() {
                 />
                 <Label variant="error">{errors.password?.message}</Label>
               </View>
-
-              {/* API Error Message */}
-              {apiError ? <Label variant="error">{apiError}</Label> : null}
             </View>
           </View>
 

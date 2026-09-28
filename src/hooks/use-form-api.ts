@@ -18,7 +18,6 @@ export function useFormApi<TSchema extends FieldValues, TResponse = unknown>(
   const { schema, defaultValues, apiFn, onSuccess, onError } = options;
 
   const [isLoading, setIsLoading] = useState(false);
-  const [apiError, setApiError] = useState<string | null>(null);
 
   const form = useForm<TSchema>({
     resolver: zodResolver(schema),
@@ -27,7 +26,6 @@ export function useFormApi<TSchema extends FieldValues, TResponse = unknown>(
 
   const onSubmit = async (data: TSchema) => {
     setIsLoading(true);
-    setApiError(null);
 
     try {
       const response = await apiFn(data);
@@ -35,7 +33,6 @@ export function useFormApi<TSchema extends FieldValues, TResponse = unknown>(
         onSuccess(response);
       }
     } catch (err) {
-      setApiError(err instanceof Error ? err.message : 'An error occurred');
       if (onError) {
         onError(err);
       }
@@ -49,7 +46,6 @@ export function useFormApi<TSchema extends FieldValues, TResponse = unknown>(
     control: form.control,
     errors: form.formState.errors,
     isLoading: isLoading || form.formState.isSubmitting,
-    apiError,
     submit: form.handleSubmit(onSubmit),
   };
 }

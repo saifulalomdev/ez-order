@@ -1,5 +1,5 @@
 import type { BottomTabBarProps } from 'expo-router/build/react-navigation/bottom-tabs';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, TouchableNativeFeedback } from 'react-native';
 import { cn } from 'cn';
 import {
   type LucideIcon,
@@ -59,20 +59,21 @@ function Tab({ isFocusd, onPress, routeName }: TabProps) {
   const { Icon, label } = tabIcons[routeName];
 
   return (
-    <Pressable
-      onPress={onPress}
-      className={cn(
-        'w-[60px] h-full items-center justify-center pt-4 pb-4 border-t-2',
-        isFocusd ? 'border-foreground' : 'border-transparent'
-      )}
-    >
-      <Icon className={isFocusd ? 'text-foreground' : 'text-muted'} size={20} />
-      <Text className={cn(
-        'text-xs font-medium mt-1',
-        isFocusd ? 'text-foreground font-semibold' : 'text-muted'
-      )}>
-        {label}
-      </Text>
-    </Pressable>
+    <TouchableNativeFeedback onPress={onPress}>
+      <View
+        className={cn(
+          'w-[60px] h-full items-center justify-center pt-4 pb-4 border-t-2',
+          isFocusd ? 'border-foreground' : 'border-transparent'
+        )}
+      >
+        <Icon className={isFocusd ? 'text-foreground' : 'text-muted'} size={20} />
+        <Text className={cn(
+          'text-xs font-medium mt-1',
+          isFocusd ? 'text-foreground font-semibold' : 'text-muted'
+        )}>
+          {label}
+        </Text>
+      </View>
+    </TouchableNativeFeedback>
   );
 }
