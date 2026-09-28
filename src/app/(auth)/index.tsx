@@ -6,7 +6,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
 import { GoogleIcon } from '@/icons/google';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useState } from 'react';
 
 export default function Login() {
@@ -26,12 +26,12 @@ export default function Login() {
           <View className="w-full flex-col gap-6 items-center">
             <LanguageSwitcher />
 
-            <Button
-              className="w-full"
-              disabled={isLoading}
-              onPress={handleGoogleSignIn}
-            >
-             <GoogleIcon/> {isLoading ? <Spinner color="#ffffff" /> : t('continueWithGoogle')}
+            <Button className="w-full gap-3" disabled={isLoading} onPress={handleGoogleSignIn}>
+              <GoogleIcon />
+              <Text className="text-base font-semibold text-white">
+                {t('continueWithGoogle')}
+              </Text>
+              {isLoading && <Spinner color="#ffffff" />}
             </Button>
           </View>
         </View>
